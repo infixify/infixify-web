@@ -1,2 +1,1055 @@
-<h1>ETERNANT Website is Live!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>INFIXIFY - PREMIUM TOURNAMENT PLATFORM</title>
+    <meta name="description" content="Join INFIXIFY to compete in daily tournaments, win prizes, and become a top player.">
+    <meta name="theme-color" content="#050507">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === PREMIUM CSS VARIABLES === */
+        :root {
+            --bg-dark: #050507;
+            --bg-gradient: radial-gradient(circle at 50% -20%, #1a0804 0%, #0a0a0c 45%, #050507 100%);
+            --primary: #FF512F;
+            --primary-glow: rgba(255, 81, 47, 0.25);
+            --secondary: #DD2476;
+            --gold: #F0B90B;
+            --gold-glow: rgba(240, 185, 11, 0.2);
+            
+            /* Socials */
+            --whatsapp: #25D366;
+            --youtube: #FF0000;
+            --telegram: #29A9EA;
+            --discord: #5865F2;
+            
+            /* Typography & UI */
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --glass-bg: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            
+            --font-main: 'Poppins', sans-serif;
+            --font-display: 'Sora', 'Poppins', sans-serif;
+            --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.05);
+            --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        /* === GLOBAL RESET === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-main);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: var(--bg-gradient);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Space Background */
+        #space-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: radial-gradient(circle at center 20%, #1a0804 0%, #050507 80%);
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ::selection { background: var(--primary); color: #fff; }
+        ul { list-style: none; }
+
+        /* Scroll-reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
+        }
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* === UTILITIES === */
+        .container {
+            width: 100%;
+            padding: 0 24px;
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+        .section-padding { padding: 100px 0; }
+        .text-center { text-align: center; }
+
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .section-eyebrow::before, .section-eyebrow::after {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.8;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 0%, #a3a3ab 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 48px;
+            font-weight: 300;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* === SLEEK BUTTONS === */
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 12px; /* Apple-style rounded corners */
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: all 0.4s var(--ease-spring);
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+            outline: none;
+            overflow: hidden;
+            background: rgba(255,255,255,0.03);
+            color: #fff;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: 1px solid rgba(255, 81, 47, 0.4);
+            box-shadow: var(--glass-highlight), 0 10px 30px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #ff6644, #f03388);
+            box-shadow: var(--glass-highlight), 0 15px 40px rgba(255, 81, 47, 0.4);
+        }
+
+        /* Social Brand Buttons */
+        .btn-whatsapp { background: linear-gradient(135deg, #25D366, #1da851); border-color: #25D366; box-shadow: var(--glass-highlight), 0 8px 25px rgba(37, 211, 102, 0.2); }
+        .btn-youtube { background: linear-gradient(135deg, #FF0000, #cc0000); border-color: #FF0000; box-shadow: var(--glass-highlight), 0 8px 25px rgba(255, 0, 0, 0.2); }
+        .btn-telegram { background: linear-gradient(135deg, #29A9EA, #228bbf); border-color: #29A9EA; box-shadow: var(--glass-highlight), 0 8px 25px rgba(41, 169, 234, 0.2); }
+        .btn-discord { background: linear-gradient(135deg, #5865F2, #4752c4); border-color: #5865F2; box-shadow: var(--glass-highlight), 0 8px 25px rgba(88, 101, 242, 0.2); }
+        .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-color: #dc2743; box-shadow: var(--glass-highlight), 0 8px 25px rgba(220, 39, 67, 0.2); }
+
+        .btn-block { width: 100%; }
+
+       /* === LOGO SYSTEM === */
+        .site-logo { object-fit: cover; border-radius: 10px; }
+        .logo .site-logo { width: 36px; height: 36px; }
+        .footer-logo .site-logo { width: 44px; height: 44px; }
+        
+        /* Add this missing block to center the text and logo inside the phone */
+        .app-logo-inside {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        
+        .app-logo-inside .site-logo { width: 70px; height: 70px; margin-bottom: 12px; border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .mobile-menu-brand .site-logo { width: 56px; height: 56px; }
+
+        /* === HEADER & NAVIGATION === */
+        header.navbar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 20px 0;
+            background: rgba(5, 5, 7, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            z-index: 1000;
+            transition: padding 0.4s var(--ease-smooth), background 0.4s var(--ease-smooth);
+        }
+
+        header.navbar.scrolled {
+            padding: 12px 0;
+            background: rgba(5, 5, 7, 0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: opacity 0.3s;
+        }
+
+        .logo span { color: var(--gold); font-weight: 700; font-size: 0.7em; letter-spacing: 2.5px; }
+
+        /* Desktop Nav */
+        .desktop-nav { display: none; }
+        
+        /* Hamburger Menu */
+        .hamburger { display: flex; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1002; padding: 5px; }
+        .hamburger span { display: block; width: 26px; height: 2px; background-color: #fff; border-radius: 2px; transition: 0.4s var(--ease-spring); }
+        .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 5, 7, 0.98);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: translateX(100%);
+            transition: transform 0.5s var(--ease-spring);
+        }
+        .mobile-menu.active { transform: translateX(0); }
+        
+        .menu-links { text-align: center; display: flex; flex-direction: column; gap: 28px; }
+        .menu-links a { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: #fff; text-transform: uppercase; transition: color 0.3s; letter-spacing: -0.5px; }
+        .menu-links a:hover { color: var(--primary); }
+        .menu-socials { display: flex; gap: 16px; justify-content: center; margin-top: 40px; }
+        .menu-social-btn { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: var(--glass-highlight); transition: all 0.3s var(--ease-spring); }
+        .menu-social-btn:hover { transform: translateY(-4px) scale(1.05); }
+
+        /* === HERO SECTION === */
+        .hero {
+            position: relative;
+            padding: 180px 0 80px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(240, 185, 11, 0.08);
+            border: 1px solid rgba(240, 185, 11, 0.2);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            color: var(--gold);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .badge-infinity {
+            color: var(--gold);
+            stroke-dasharray: 65;
+            animation: infinity-loop 2s linear infinite;
+        }
+
+        @keyframes infinity-loop {
+            0% { stroke-dashoffset: 65; opacity: 0.3; }
+            50% { stroke-dashoffset: 0; opacity: 1; filter: drop-shadow(0 0 6px var(--gold)); }
+            100% { stroke-dashoffset: -65; opacity: 0.3; }
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin: 0 auto 40px;
+            max-width: 540px;
+        }
+
+        /* === APP SCREENSHOTS === */
+        .screenshots-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 60px 30px;
+            text-align: center;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: var(--glass-highlight), 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .screenshot-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s var(--ease-spring);
+        }
+
+        .screenshot-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        
+        .screenshot-card:hover img { opacity: 1; }
+        .screenshot-card:nth-child(1) img { aspect-ratio: 9/20; }
+        .screenshot-card:nth-child(2) img, .screenshot-card:nth-child(3) img { aspect-ratio: 1/1; }
+
+        .screenshot-card p {
+            padding: 18px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        /* === MOBILE MOCKUP (Flagship Style) === */
+        .mockup-wrapper { padding: 60px 0; perspective: 1200px; }
+        
+        .phone-mockup {
+            width: 300px;
+            height: 620px;
+            background: #000;
+            border: 2px solid rgba(255,255,255,0.15); /* Titanium edge */
+            border-radius: 50px;
+            position: relative;
+            margin: 0 auto;
+            box-shadow: inset 0 0 0 6px #111, 0 40px 80px rgba(0,0,0,0.8), 0 0 60px rgba(255, 81, 47, 0.15);
+            animation: float 6s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 15px; left: 50%;
+            transform: translateX(-50%);
+            width: 90px; height: 28px;
+            background: #000;
+            border-radius: 20px; /* Dynamic Island style */
+            z-index: 2;
+        }
+
+        .phone-screen {
+            width: calc(100% - 12px);
+            height: calc(100% - 12px);
+            border-radius: 42px;
+            background: radial-gradient(circle at top, #1a0804 0%, #000 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotateX(4deg); }
+            50% { transform: translateY(-20px) rotateX(4deg); }
+        }
+
+        /* === PREMIUM GLASS CARDS (Features & Tournaments) === */
+        .features-grid, .tournaments-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .feature-card, .tournament-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 36px 24px;
+            text-align: center;
+            box-shadow: var(--glass-highlight), 0 15px 35px rgba(0,0,0,0.2);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s var(--ease-spring);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover, .tournament-card:hover {
+            border-color: rgba(255,255,255,0.15);
+            transform: translateY(-8px);
+            box-shadow: var(--glass-highlight), 0 25px 50px rgba(0,0,0,0.4), 0 0 30px rgba(255, 81, 47, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+        }
+
+        .feature-card h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #fff; }
+        .feature-card p { font-size: 0.95rem; color: var(--text-muted); }
+
+        /* Tournament Specifics */
+        .tournament-card { padding: 0; display: flex; flex-direction: column; }
+        .t-image { width: 100%; height: 180px; position: relative; background: #111; }
+        .t-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, #0a0a0c, transparent 80%); }
+        .t-image img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: 0.4s; }
+        .tournament-card:hover .t-image img { opacity: 1; transform: scale(1.05); }
+        .t-content { padding: 28px 24px; text-align: left; z-index: 2; }
+        .t-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; color: #fff; }
+        .t-meta { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); }
+        .t-stats { display: flex; justify-content: space-between; margin-bottom: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .t-stat-item small { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+        .t-stat-item strong { color: #fff; font-size: 1.3rem; font-weight: 700; display: block; margin-top: 4px; }
+        .t-stat-item:last-child strong { color: var(--gold); }
+
+        /* === TOP PLAYERS TABLE === */
+        .leaderboard-wrapper {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--glass-highlight), 0 20px 40px rgba(0,0,0,0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        th { background: rgba(0,0,0,0.4); color: var(--text-muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        td { font-weight: 600; font-size: 1.05rem; color: #f3f4f6; }
+        
+        tbody tr { transition: background 0.3s ease; }
+        tbody tr:hover { background: rgba(255,255,255,0.03); }
+        tr:last-child td { border-bottom: none; }
+        .rank-medal { font-size: 1.5rem; margin-right: 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); }
+        
+        tr.top-rank { background: linear-gradient(90deg, rgba(240, 185, 11, 0.05), transparent); }
+
+        /* === FOOTER === */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 80px 0 30px;
+            margin-top: 60px;
+            background: #030304;
+        }
+
+        .footer-content { display: flex; flex-direction: column; gap: 40px; text-align: center; }
+        .footer-logo { display: flex; align-items: center; justify-content: center; gap: 12px; font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 16px; }
+        .footer-logo span { color: var(--gold); font-size: 0.6em; letter-spacing: 3px; font-weight: 700; }
+        .footer-text { color: var(--text-muted); font-size: 0.95rem; max-width: 400px; margin: 0 auto; }
+        
+        .footer-links { display: flex; flex-direction: column; gap: 20px; }
+        .footer-links a { color: var(--text-muted); font-weight: 600; transition: color 0.3s; }
+        .footer-links a:hover { color: #fff; }
+        
+        .footer-bottom { margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: #6b7280; font-size: 0.85rem; }
+
+        /* === RESPONSIVE (TABLET & DESKTOP) === */
+        @media (min-width: 768px) {
+            .hero h1 { font-size: 5rem; letter-spacing: -2px; }
+            .hero p { font-size: 1.2rem; }
+            .hero-buttons, .community-buttons { flex-direction: row; justify-content: center; max-width: none; }
+            
+            .features-grid, .screenshots-grid { grid-template-columns: repeat(3, 1fr); }
+            .tournaments-grid { grid-template-columns: repeat(2, 1fr); }
+
+            .footer-content { flex-direction: row; justify-content: space-between; text-align: left; align-items: flex-start; }
+            .footer-logo { justify-content: flex-start; }
+            .footer-text { margin: 0; }
+            .footer-links { flex-direction: row; gap: 32px; }
+        }
+
+        @media (min-width: 1024px) {
+            .tournaments-grid { grid-template-columns: repeat(3, 1fr); }
+            .hamburger { display: none; }
+            .desktop-nav { display: flex; gap: 36px; align-items: center; }
+            .desktop-nav a { color: var(--text-muted); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
+            .desktop-nav a:hover { color: #fff; }
+            .mobile-menu { display: none !important; }
+        }
+
+        /* === ETERNANT SPONSOR BAR === */
+        .sponsor-bar {
+            width: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 100%);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            padding: 10px 0;
+            position: relative;
+            z-index: 999;
+        }
+        .sponsor-bar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .sponsor-text {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+        }
+        .sponsor-sep {
+            width: 1px;
+            height: 16px;
+            background: rgba(255,255,255,0.1);
+        }
+        .sponsor-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 14px 5px 8px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .sponsor-link:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+        .sponsor-logo {
+            height: 22px;
+            width: auto;
+            filter: brightness(1.15) drop-shadow(0 0 4px rgba(255,255,255,0.15));
+        }
+        .sponsor-name {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.55);
+            letter-spacing: 1px;
+        }
+        .sponsor-name strong {
+            color: #fff;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add this right here -->
+    <canvas id="space-canvas"></canvas>
+
+
+    <!-- ETERNANT SPONSOR BAR TOP -->
+    <div class="sponsor-bar">
+        <div class="container sponsor-bar-inner">
+            <span class="sponsor-text">Sponsored &amp; Powered by</span>
+            <div class="sponsor-sep"></div>
+            <a href="https://eternant.ext.io/" target="_blank" rel="noopener" class="sponsor-link">
+                <img src="data:image/png;base64,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" alt="Eternant" class="sponsor-logo" />
+                <span class="sponsor-name"><strong>Eternant</strong></span>
+            </a>
+        </div>
+    </div>
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="" class="site-logo" alt="Logo">
+                INFIXIFY<span>ESPORTS</span>
+            </a>
+            
+            <nav class="desktop-nav">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#tournaments">Tournaments</a>
+                <a href="#top-players">Top Players</a>
+                <a href="#footer">Contact Us</a>
+            </nav>
+
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-brand">
+            <img src="" class="site-logo" alt="Logo">
+            <div class="logo" style="font-size: 2rem;">INFIXIFY<span>ESPORTS</span></div>
+        </div>
+        <nav class="menu-links">
+            <a href="#home" class="menu-item">Home</a>
+            <a href="https://github.com/infixify/infixify-releases/releases/download/v1.3/INFIXIFY.ESPORTS_1.2.apk" target="_blank" class="menu-item">Download App</a>
+            <a href="#features" class="menu-item">Features</a>
+            <a href="#tournaments" class="menu-item">Tournaments</a>
+            <a href="#top-players" class="menu-item">Top Players</a>
+            <a href="#footer" class="menu-item">Contact Us</a>
+        </nav>
+        <div class="menu-socials">
+            <a href="https://whatsapp.com/channel/0029VbClZ4M6xCSWpeyBNr17" target="_blank" data-social="whatsappChannel" class="menu-social-btn menu-item" style="background: var(--whatsapp);"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.42a9.87 9.87 0 0 0 4.62 1.18h.005c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.78 14.13c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.17-4.93-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.29.29-.12.57.17.28.75 1.24 1.61 2 .61.55 1.13.83 1.31.93.18.09.28.08.39-.05.11-.13.46-.53.58-.71.12-.18.24-.15.4-.09.16.06 1.02.48 1.19.57.17.09.29.13.33.2.05.08.05.42-.19 1.1z"></path></svg></a>
+            <a href="https://t.me/infixify" target="_blank" data-social="telegram" class="menu-social-btn menu-item" style="background: var(--telegram);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7z"></path></svg></a>
+            <a href="https://discord.gg/TQjgf9KwM" target="_blank" data-social="discord" class="menu-social-btn menu-item" style="background: var(--discord);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="5"></rect><circle cx="9" cy="12" r="1.3" fill="currentColor"></circle><circle cx="15" cy="12" r="1.3" fill="currentColor"></circle></svg></a>
+            <a href="https://www.instagram.com/infixifyesp?igsh=MTIxZHoweDJhY3NubA==" target="_blank" data-social="instagram" class="menu-social-btn menu-item" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+            <a href="https://youtube.com/@infixyfyesports?si=MtzqbHz8Am_1DBpv" target="_blank" data-social="youtube" class="menu-social-btn menu-item" style="background: var(--youtube);"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+    </div>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="live-badge reveal">
+                <svg class="badge-infinity" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 1 0 0-8c-2 0-4 1.33-6 4Z"/></svg>
+                #INFIXIFYONTOP
+            </div>
+            <h1 class="reveal">Play. Win.<br><span>Dominate.</span></h1>
+            <p class="reveal">Join the ultimate mobile esports platform. Compete in daily tournaments, climb the leaderboards, and win real cash prizes.</p>
+            <div class="hero-buttons reveal">
+                <a href="https://github.com/infixify/infixify-releases/releases/download/v1.3/INFIXIFY.ESPORTS_1.2.apk" target="_blank" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download App
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="community" style="padding-top: 0;">
+        <div class="container text-center reveal">
+            <span class="section-eyebrow">Stay Connected</span>
+            <h2 class="section-title">Join Our Community</h2>
+            <p class="section-subtitle">Get instant updates, connect with players, and never miss a tournament</p>
+            <div class="community-buttons">
+                <a href="https://whatsapp.com/channel/0029VbClZ4M6xCSWpeyBNr17" target="_blank" data-social="whatsappChannel" class="btn btn-whatsapp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.42a9.87 9.87 0 0 0 4.62 1.18h.005c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.78 14.13c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.17-4.93-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.29.29-.12.57.17.28.75 1.24 1.61 2 .61.55 1.13.83 1.31.93.18.09.28.08.39-.05.11-.13.46-.53.58-.71.12-.18.24-.15.4-.09.16.06 1.02.48 1.19.57.17.09.29.13.33.2.05.08.05.42-.19 1.1z"></path></svg> WhatsApp</a>
+                <a href="https://t.me/infixify" target="_blank" data-social="telegram" class="btn btn-telegram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7z"></path></svg> Telegram</a>
+                <a href="https://discord.gg/TQjgf9KwM" target="_blank" data-social="discord" class="btn btn-discord"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="5"></rect><circle cx="9" cy="12" r="1.3" fill="currentColor"></circle><circle cx="15" cy="12" r="1.3" fill="currentColor"></circle></svg> Discord</a>
+                <a href="https://www.instagram.com/infixifyesp?igsh=MTIxZHoweDJhY3NubA==" target="_blank" data-social="instagram" class="btn btn-instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> Instagram</a>
+                <a href="https://youtube.com/@infixyfyesports?si=MtzqbHz8Am_1DBpv" target="_blank" data-social="youtube" class="btn btn-youtube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> YouTube</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="screenshots">
+        <div class="container">
+            <div class="screenshots-box reveal">
+                <span class="section-eyebrow">Inside The App</span>
+                <h2 class="section-title">App Interface</h2>
+                <div class="screenshots-grid">
+                    <div class="screenshot-card"><img src="https://i.ibb.co/ZzkJX6Rj/a6c64a26952a.png" alt="App screenshot"><p>PREMIUM DESIGN</p></div>
+                    <div class="screenshot-card"><img src="https://i.ibb.co/xSbwBW6T/IMG-20260822-120818.png" alt="App screenshot"><p>MULTIPLE THEMES</p></div>
+                    <div class="screenshot-card"><img src="https://i.ibb.co/C5xFW9vx/IMG-20260822-121711.png" alt="App screenshot"><p>PROFILE & WALLET</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container text-center">
+            <span class="section-eyebrow reveal">Built Different</span>
+            <h2 class="section-title reveal">Experience Premium Gaming</h2>
+            <p class="section-subtitle reveal">Everything you need in one powerful app</p>
+            <div class="mockup-wrapper reveal">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="app-logo-inside">
+                            <img src="" class="site-logo" alt="Logo">
+                            <span style="font-family: var(--font-display);">INFIXIFY</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="features">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-eyebrow">Why INFIXIFY</span>
+                <h2 class="section-title">Platform Features</h2>
+                <p class="section-subtitle">Why elite players choose INFIXIFY</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal"><div class="feature-icon">🎮</div><h3>Daily Tournaments</h3><p>Participate in multiple matches every single day across different games.</p></div>
+                <div class="feature-card reveal"><div class="feature-icon">⚡</div><h3>Instant Results</h3><p>Automated score verification and instant updates on your profile.</p></div>
+                <div class="feature-card reveal"><div class="feature-icon">🛡️</div><h3>Secure Matches</h3><p>Anti-cheat system and dedicated moderators ensuring fair play.</p></div>
+                <div class="feature-card reveal"><div class="feature-icon">🚀</div><h3>Fast Registration</h3><p>Join any tournament with just one tap. No complicated forms.</p></div>
+                <div class="feature-card reveal"><div class="feature-icon">🔴</div><h3>Live Updates</h3><p>Real-time notifications about room IDs, passwords, and match starts.</p></div>
+                <div class="feature-card reveal"><div class="feature-icon">💰</div><h3>Instant Rewards</h3><p>Instant withdrawal of your winnings directly to your wallet.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="tournaments">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-eyebrow">Join The Battle</span>
+                <h2 class="section-title">Upcoming Tournaments</h2>
+                <p class="section-subtitle">Register now before slots are full</p>
+            </div>
+            <div class="tournaments-grid">
+                <!-- Card 1 -->
+                <div class="tournament-card reveal">
+                    <div class="t-image"><img src="" class="tournament-image" alt="Tournament"></div>
+                    <div class="t-content">
+                        <h3 class="t-title">FREE GIVEAWAY</h3>
+                        <div class="t-meta"><span>📅 EVERYDAY</span><span>⏰ 08:00 PM</span></div>
+                        <div class="t-stats">
+                            <div class="t-stat-item"><small>Prize Pool</small><strong>₹100</strong></div>
+                            <div class="t-stat-item" style="text-align: right;"><small>Entry Fee</small><strong>FREE</strong></div>
+                        </div>
+                        <a href="https://github.com/infixify/infixify-releases/releases/download/v1.3/INFIXIFY.ESPORTS_1.2.apk" target="_blank" class="btn btn-primary btn-block">Join Now</a>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="tournament-card reveal">
+                    <div class="t-image"><img src="" class="tournament-image" alt="Tournament"></div>
+                    <div class="t-content">
+                        <h3 class="t-title">ESPORTS SCRIMS</h3>
+                        <div class="t-meta"><span>📅 DAILY</span><span>⏰ 09:00 PM</span></div>
+                        <div class="t-stats">
+                            <div class="t-stat-item"><small>Prize Pool</small><strong>₹500</strong></div>
+                            <div class="t-stat-item" style="text-align: right;"><small>Entry Fee</small><strong>₹50</strong></div>
+                        </div>
+                        <a href="https://github.com/infixify/infixify-releases/releases/download/v1.3/INFIXIFY.ESPORTS_1.2.apk" target="_blank" class="btn btn-primary btn-block">Join Now</a>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="tournament-card reveal">
+                    <div class="t-image"><img src="" class="tournament-image" alt="Tournament"></div>
+                    <div class="t-content">
+                        <h3 class="t-title">BR PER KILL</h3>
+                        <div class="t-meta"><span>📅 DAILY</span><span>⏰ EVERYTIME</span></div>
+                        <div class="t-stats">
+                            <div class="t-stat-item"><small>Prize Pool</small><strong>₹400</strong></div>
+                            <div class="t-stat-item" style="text-align: right;"><small>Entry Fee</small><strong>₹10</strong></div>
+                        </div>
+                        <a href="https://github.com/infixify/infixify-releases/releases/download/v1.3/INFIXIFY.ESPORTS_1.2.apk" target="_blank" class="btn btn-primary btn-block">Join Now</a>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="tournament-card reveal">
+                    <div class="t-image"><img src="" class="tournament-image" alt="Tournament"></div>
+                    <div class="t-content">
+                        <h3 class="t-title">BR SURVIVAL</h3>
+                        <div class="t-meta"><span>📅 DAILY</span><span>⏰ EVERYTIME</span></div>
+                        <div class="t-stats">
+                            <div class="t-stat-item"><small>Prize Pool</small><strong>₹200</strong></div>
+                            <div class="t-stat-item" style="text-align: right;"><small>Entry Fee</small><strong>₹11</strong></div>
+                        </div>
+                        <a href="https://github.com/infixify/infixify-releases/releases/download/v1.3/INFIXIFY.ESPORTS_1.2.apk" target="_blank" class="btn btn-primary btn-block">Join Now</a>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="tournament-card reveal">
+                    <div class="t-image"><img src="" class="tournament-image" alt="Tournament"></div>
+                    <div class="t-content">
+                        <h3 class="t-title">AND MANY MORE...</h3>
+                        <div class="t-meta"><span>📅 APP ONLY</span><span>⏰ APP ONLY</span></div>
+                        <div class="t-stats">
+                            <div class="t-stat-item"><small>Prize Pool</small><strong>TBA</strong></div>
+                            <div class="t-stat-item" style="text-align: right;"><small>Entry Fee</small><strong>TBA</strong></div>
+                        </div>
+                        <a href="https://github.com/infixify/infixify-releases/releases/download/v1.3/INFIXIFY.ESPORTS_1.2.apk" target="_blank" class="btn btn-primary btn-block">Join Now</a>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="tournament-card reveal">
+                    <div class="t-image"><img src="" class="tournament-image" alt="Tournament"></div>
+                    <div class="t-content">
+                        <h3 class="t-title">MORE GAMES COMING</h3>
+                        <div class="t-meta"><span>📅 COMING SOON</span><span>⏰ COMING SOON</span></div>
+                        <div class="t-stats">
+                            <div class="t-stat-item"><small>Prize Pool</small><strong>TBA</strong></div>
+                            <div class="t-stat-item" style="text-align: right;"><small>Entry Fee</small><strong>TBA</strong></div>
+                        </div>
+                        <a href="https://github.com/infixify/infixify-releases/releases/download/v1.3/INFIXIFY.ESPORTS_1.2.apk" target="_blank" class="btn btn-primary btn-block">Join Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="top-players">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-eyebrow">Leaderboard</span>
+                <h2 class="section-title">Hall of Fame</h2>
+                <p class="section-subtitle">Top players of the season</p>
+            </div>
+            
+            <div class="leaderboard-wrapper reveal">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Username</th>
+                                <th style="text-align: right;">Matches Won</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="top-rank"><td><span class="rank-medal">🥇</span> 1</td><td>W4T-ANANT</td><td style="text-align: right; color: var(--gold);">142</td></tr>
+                            <tr class="top-rank"><td><span class="rank-medal">🥈</span> 2</td><td>DGE~DANGER</td><td style="text-align: right; color: var(--gold);">118</td></tr>
+                            <tr class="top-rank"><td><span class="rank-medal">🥉</span> 3</td><td>S∆RTH∆K</td><td style="text-align: right; color: var(--gold);">95</td></tr>
+                            <tr><td># 4</td><td>Siddharth</td><td style="text-align: right; color: var(--text-muted);">88</td></tr>
+                            <tr><td># 5</td><td>VenomSnake</td><td style="text-align: right; color: var(--text-muted);">74</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand reveal">
+                    <div class="footer-logo">
+                        <img src="" class="site-logo" alt="Logo">
+                        INFIXIFY<span>ESPORTS</span>
+                    </div>
+                    <p class="footer-text">Thanks For visiting the page, Don't forget to check out the Social Community. For business related queries reach us out at "infixifyesport@gmail.com"</p>
+                </div>
+                
+                <div class="footer-links reveal">
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#tournaments">Tournaments</a>
+                    <a href="#top-players">Top Players</a>
+                </div>
+
+                <div class="footer-contact reveal">
+                    <a href="https://wa.me/9244294085" target="_blank" data-social="whatsappSupport" class="btn btn-whatsapp" style="padding: 12px 24px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.42a9.87 9.87 0 0 0 4.62 1.18h.005c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.78 14.13c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.17-4.93-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.29.29-.12.57.17.28.75 1.24 1.61 2 .61.55 1.13.83 1.31.93.18.09.28.08.39-.05.11-.13.46-.53.58-.71.12-.18.24-.15.4-.09.16.06 1.02.48 1.19.57.17.09.29.13.33.2.05.08.05.42-.19 1.1z"></path></svg>
+                        Support
+                    </a>
+                </div>
+            </div>
+            
+
+            <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.05); margin-top:60px; padding-top:24px; text-align:center; color:#6b7280; font-size:0.85rem;">
+                <p>&copy; 2026 INFIXIFY. All Rights Reserved.</p>
+                <p style="margin-top:10px; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;">
+                    <span style="font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.25);">Sponsored &amp; Powered by</span>
+                    <a href="https://eternant.ext.io/" target="_blank" rel="noopener"
+                       style="display:inline-flex; align-items:center; gap:7px; padding:4px 12px 4px 7px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; transition:all 0.3s;">
+                        <img src="data:image/png;base64,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" alt="Eternant" style="height:18px; width:auto; filter:brightness(1.1);" />
+                        <span style="font-size:0.75rem; font-weight:700; color:#fff; letter-spacing:0.5px;">Eternant</span>
+                    </a>
+                </p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- JavaScript (Includes your corrected YouTube fix) -->
+    <script>
+        const CONFIG = {
+           logoUrl: "https://i.ibb.co/40YMBwg/981a5a055b91.jpg",
+           tournamentImages: [
+              "https://i.ibb.co/21nmsgdT/77a826d769b0.jpg",
+              "https://i.ibb.co/0VVsskkf/06a0a08742fe.png",
+              "https://i.ibb.co/Fk09xkC3/90b09afb00c4.jpg",
+              "https://i.ibb.co/0VFpntCV/636a64f9d242.jpg",
+              "https://i.ibb.co/p6yXrVXQ/48a4deba6d72.jpg",
+              "https://i.ibb.co/bMqpsNvM/e39c220ccf02.jpg"
+           ],
+           socialLinks: {
+              whatsappChannel: "https://whatsapp.com/channel/0029VbClZ4M6xCSWpeyBNr17",
+              whatsappSupport: "https://wa.me/9244294085",
+              telegram: "https://t.me/infixify",
+              discord: "https://discord.gg/TQjgf9KwM",
+              instagram: "https://www.instagram.com/infixifyesp?igsh=MTIxZHoweDJhY3NubA==",   
+              youtube: "https://youtube.com/@infixyfyesports?si=MtzqbHz8Am_1DBpv"
+           }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const siteLogos = document.querySelectorAll('.site-logo');
+            siteLogos.forEach(logo => logo.src = CONFIG.logoUrl);
+
+            const tournamentImages = document.querySelectorAll('.tournament-image');
+            tournamentImages.forEach((img, index) => {
+                if(CONFIG.tournamentImages[index]) img.src = CONFIG.tournamentImages[index];
+            });
+
+            const socialButtons = document.querySelectorAll('[data-social]');
+            socialButtons.forEach(el => {
+                const key = el.dataset.social;
+                if (CONFIG.socialLinks[key]) el.href = CONFIG.socialLinks[key];
+            });
+
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuItems = document.querySelectorAll('.menu-item');
+            const body = document.body;
+
+            function toggleMenu() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            }
+
+            hamburger.addEventListener('click', toggleMenu);
+            menuItems.forEach(item => item.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) toggleMenu();
+            }));
+
+            const navbar = document.querySelector('header.navbar');
+            const onScroll = () => {
+                if (window.scrollY > 30) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+            const revealTargets = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            revealTargets.forEach(el => revealObserver.observe(el));
+        });
+
+           // === SPACE BACKGROUND ANIMATION ===
+            const canvas = document.getElementById('space-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height, stars = [];
+
+            function initStars() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+                stars = [];
+                // Generate 200 stars with random positions, sizes, and speeds
+                for(let i = 0; i < 200; i++) {
+                    stars.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        radius: Math.random() * 1.5,
+                        speed: Math.random() * 0.5 + 0.1
+                    });
+                }
+            }
+
+            function drawStars() {
+                ctx.clearRect(0, 0, width, height);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+                ctx.beginPath();
+                
+                for(let star of stars) {
+                    ctx.moveTo(star.x, star.y);
+                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    
+                    // Move star upwards
+                    star.y -= star.speed;
+                    
+                    // Reset star to bottom if it goes off screen
+                    if(star.y < 0) {
+                        star.y = height;
+                        star.x = Math.random() * width;
+                    }
+                }
+                ctx.fill();
+                requestAnimationFrame(drawStars);
+            }
+
+            initStars();
+            drawStars();
+
+            // Resize canvas when window changes
+            window.addEventListener('resize', initStars);
+
+    </script>
+</body>
+</html>
